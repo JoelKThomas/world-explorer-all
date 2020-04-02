@@ -1,0 +1,34 @@
+<app-nav-menu></app-nav-menu>
+<div class="search-bar" style="height: 15%; background-color:#3F51B5;">
+  <mat-form-field appearance="outline" style="position: absolute; right: 30%; width: 70%; margin-top:-3%;">
+    <input matInput placeholder="search countries" (keyup)="applyFilter($event.target.value)">
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div class="mat-app-background basic-container" style="background-color: aliceblue">
+  <br>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center" fxLayoutGap="1%">
+    <mat-card *ngFor="let member of currentData" fxFlex="calc(25%-25px)" fxFlex.md="calc(33%-25px)"
+      fxFlex.sm="calc(50%-25px)" class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image':'url('+member.flag+')'}">
+        </div>
+        <button id={{member.name}} *ngIf="!bookmarkCountry(member.name)" mat-mini-fab color="white"
+          style="position: absolute; right: 1%; margin-top: 5%" (click)=addCountry(member.name)>
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+        <button id={{member.name}} *ngIf="bookmarkCountry(member.name)" mat-mini-fab color="white"
+          style="position: absolute; right: 1%; margin-top: 5%" (click)=removeCountry(member.name)>
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <mat-card-title id=name{{member.name}} (click)="countryDetail(member.name)">{{member.name}}</mat-card-title>
+        <mat-card-subtitle>{{member.capital}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{member.subregion}}--{{member.region}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

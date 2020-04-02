@@ -1,0 +1,69 @@
+img {
+    margin-top: 3%;
+}
+
+#searchbar mat-form-field {
+    width: 150%;
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+    padding: 0.7em 1px !important;
+}
+
+mat-icon {
+    color: rgb(48, 12, 114);
+}
+
+input {
+    color: black;
+    margin-left: 5%;
+}
+
+#searchminibar mat-form-field {
+    width: 75%;
+}
+
+#searchminibar {
+    padding-right: 5%;
+}
+
+.favourites {
+    margin-bottom: 3%;
+    color: #FFFFFF;
+    font-family: Comic Sans MS;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.username-section {
+    position: absolute;
+    right: 1%;
+}
+
+.username-wish {
+    color: #FFFFFF;
+    font-family: Comic Sans MS;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+ngx-avatar {
+    display: inline-block;
+}
+
+.search-bar {
+    width: 50%;
+    height: 50%;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 200px) and (max-width: 450px) {
+    .responsive {
+        width: 85%;
+        height: auto;
+    }
+}

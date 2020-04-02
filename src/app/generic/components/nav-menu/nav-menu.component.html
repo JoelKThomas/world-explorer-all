@@ -1,0 +1,58 @@
+<div>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <a class="navbar-item" href="">
+                <img class="responsive" src="assets/navlogo.png">
+            </a>
+            <span class="menu-spacer"></span>
+            <div fxShow="true" fxHide.lt-md>
+                <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+                <a class="favourites" href="/countries/favourite" mat-button>My Favourites</a>
+            </div>
+            <div class="username-section">
+                <span class="username-wish" fxShow="true" fxHide.lt-md>
+                    Hello {{username}}
+                </span>
+                <span class="username-avatar">
+                    <!-- <ngx-avatar size="40" bgColor="white" fgColor="indigo" name={{username}}>
+                    </ngx-avatar> -->
+                    <button id="menu" mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon style="color:white ">menu</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button id="myFavourites" mat-menu-item (click)="favourites()">My Favourites</button>
+                        <button mat-menu-item>Profile</button>
+                        <button  id="logout"  mat-menu-item (click)="logout()">Logout</button>
+                    </mat-menu>
+                </span>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- <mat-sidenav-container>
+        <mat-sidenav #sidenav>
+            <mat-nav-list>
+                <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+                <a href="#" mat-list-item>Menu Item 1</a>
+                <a href="#" mat-list-item>Menu Item 2</a>
+                <a href="#" mat-list-item>Menu Item 3</a>
+                <a href="#" mat-list-item>Menu Item 4</a>
+                <a href="#" mat-list-item>Menu Item 5</a>
+                <a href="#" mat-list-item>Menu Item 6</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill>
+
+        </mat-sidenav-content>
+    </mat-sidenav-container> -->
+</div>
+<!-- <div>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav mode="side" opened #sidenav>Sidenav content</mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content">
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div> -->

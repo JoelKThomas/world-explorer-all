@@ -1,0 +1,329 @@
+<app-nav-menu></app-nav-menu>
+<mat-card flex-gt-sm>
+  <img mat-card-image [src]="data?.flag" alt="Photo of {{data?.name}}"
+    style="float: right; width:200px; height: 110px; margin-top: 0.3%; margin-right: 0.3%; border: black; ">
+  <mat-card-title>{{data?.name}} {{data?.nativeName}}</mat-card-title>
+  <mat-card-subtitle>Capital: {{data?.capital}}</mat-card-subtitle>
+  <mat-card-subtitle>Region: {{data?.region}}</mat-card-subtitle>
+  <mat-card-subtitle>Sub-Region: {{data?.subregion}}</mat-card-subtitle>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <span *ngIf="!bookmarkCountry(data?.name)">
+      <button id="bookmarkButton" mat-fab color="white" (click)=addCountry(data?.name) style="margin-left: 50%">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+    </span>
+    <span *ngIf="bookmarkCountry(data?.name)">
+      <button id="bookmarkButton" *ngIf="bookmarkCountry(data?.name)" mat-fab color="white" style="margin-left: 50%"
+        (click)=removeCountry(data?.name)>
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </span>
+  </mat-card-actions>
+</mat-card>
+
+
+<mat-tab-group>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">all_inbox</mat-icon>
+      <span id="general">General</span>
+    </ng-template>
+    <mat-grid-list cols="4" rowHeight="175px">
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: rgba(32, 255, 218, 0.945)">
+        <mat-list-item>
+          <mat-icon matListAvatar style="margin-left: 39%;">navigation</mat-icon>
+          <h4 matLine>{{data?.area}} Square Kilometers</h4>
+          <p matLine style="margin-left: 39%;">Area</p>
+        </mat-list-item>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" style="background-color: rgba(255, 247, 137, 0.945)">
+        <mat-list-item>
+          <mat-icon matListAvatar style="margin-left:28%">swap_horizontal_circle</mat-icon>
+          <h4 matLine style=" margin-left:12%">{{data?.latlng}}</h4>
+          <p matLine>Latitude, Longitude</p>
+        </mat-list-item>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]=" 1" [rowspan]="2" style="background-color: rgb(149, 245, 237)">
+        <mat-list-item>
+          <mat-icon matListAvatar style="width: 38px; height:30px">commute</mat-icon>
+          <h4 matLine>{{data?.cioc}}</h4>
+          <p matLine>Coic</p>
+        </mat-list-item>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" style="background-color: rgb(255, 209, 216)">
+        <mat-list-item>
+          <mat-icon matListAvatar>account_balance_wallet</mat-icon>
+          <h4 matLine>{{data?.gini}}</h4>
+          <p matLine>Gini</p>
+        </mat-list-item>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: rgb(174, 221, 250)">
+        <mat-list-item>
+          <mat-icon matListAvatar>supervised_user_circle</mat-icon>
+          <h4 matLine>{{data?.demonym}}</h4>
+          <p matLine>Demonym</p>
+        </mat-list-item>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider matInset></mat-divider>
+  </mat-tab>
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">code</mat-icon>
+      <span id="codes">Codes</span>
+    </ng-template>
+
+    <mat-grid-list cols="4" rowHeight="175px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1" style="background-color: #c0ff2d">
+        <mat-list>
+          <h3 mat-subheader>Alpha2Code</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>code</mat-icon>
+            <h4 matLine>{{data?.alpha2Code}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1" style="background-color: rgb(200, 255, 198)">
+        <mat-list>
+          <h3 mat-subheader>Alpha3Code</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>code</mat-icon>
+            <h4 matLine>{{data?.alpha3Code}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="2" style="background-color: rgb(250, 220, 174)">
+        <mat-list>
+          <h3 mat-subheader>Alternate Names</h3>
+          <mat-list-item *ngFor="let name of data?.altSpellings">
+            <mat-icon mat-list-icon>note</mat-icon>
+            <h4 mat-line>{{name}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: rgb(80, 188, 255)">
+        <mat-list>
+          <h3 mat-subheader>Number Code</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>contact_phone</mat-icon>
+            <h4 matLine>{{data?.numericCode}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">eco</mat-icon>
+      <span id="economy">Economy</span>
+    </ng-template>
+
+    <mat-grid-list cols="4" rowHeight="175px">
+      <mat-grid-tile [colspan]="2" [rowspan]="2" style="background-color: aliceblue">
+        <mat-list *ngFor="let currencies of data?.currencies">
+          <h3 mat-subheader>Currency</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>attach_money</mat-icon>
+            <h4 mat-line>{{currencies.code}}</h4>
+            <p mat-line> code </p>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>dynamic_feed</mat-icon>
+            <h4 mat-line>{{currencies.name}}</h4>
+            <p mat-line> Name </p>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>euro_symbol</mat-icon>
+            <h4 mat-line>{{currencies.symbol}}</h4>
+            <p mat-line> Symbol</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: aliceblue">
+        <mat-list *ngFor="let callingCode of data?.callingCodes">
+          <h3 mat-subheader>Calling Codes</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>call</mat-icon>
+            <h4 matLine>{{callingCode}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: aliceblue">
+        <mat-list>
+          <h3 mat-subheader>Time Zone</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>timer</mat-icon>
+            <h4 matLine>{{data?.timezones}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">explore</mat-icon>
+      <span id="border">Border</span>
+    </ng-template>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table1 [dataSource]="borderDataSource">
+
+        <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="flag">
+          <mat-header-cell *matHeaderCellDef>Flag</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Flag:</span>
+            <img mat-card-image [src]="element.flag" alt="Photo of {{element.name}}"
+              style="width:20%;height:10%; margin-top: 5%">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="code">
+          <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Code:</span>
+            {{element?.alpha3Code}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Border </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Border:</span>
+            {{element?.name}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="capital">
+          <mat-header-cell *matHeaderCellDef> Capital </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Capital:</span>
+            {{element?.capital}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumnsBorder"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsBorder;"></mat-row>
+      </mat-table>
+    </div>
+    <mat-divider matInset></mat-divider>
+  </mat-tab>
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">landscape</mat-icon>
+      <span id="Regional">Regional</span>
+    </ng-template>
+
+
+    <mat-grid-list cols="4" rowHeight="130px">
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: white">
+        <mat-list>
+          <h3 mat-subheader>Population</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>emoji_people</mat-icon>
+            <h4 matLine>{{data?.population}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="2" style="background-color: white">
+        <mat-list *ngFor="let regionalBloc of data?.regionalBlocs">
+          <h3 mat-subheader>Top Level Domain</h3>
+          <mat-list-item>
+            <mat-icon matListAvatar>account_box</mat-icon>
+            <h4 matLine>{{regionalBloc.acronym}}</h4>
+            <p matLine>Name</p>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListAvatar>account_box</mat-icon>
+            <h4 matLine>{{regionalBloc.name}}</h4>
+            <p matLine>Name</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="2" [rowspan]="1" style="background-color: white">
+        <mat-list *ngFor="let topLevelDomain of data?.topLevelDomain">
+          <h3 mat-subheader>Top Level Domain</h3>
+          <mat-list-item>
+            <mat-icon mat-list-icon>web</mat-icon>
+            <h4 matLine>{{topLevelDomain}}</h4>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">language</mat-icon>
+      <span id="language">Language</span>
+    </ng-template>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" [class.isMobile]="isMobile">
+
+        <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="iso639_1">
+          <mat-header-cell *matHeaderCellDef>iso639_1</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">iso639_1:</span>
+            {{element.iso639_1}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="iso639_2">
+          <mat-header-cell *matHeaderCellDef> iso639_2 </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">iso639_2:</span>
+            {{element.iso639_2}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Name:</span>
+            {{element.name}}
+          </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="nativeName">
+          <mat-header-cell *matHeaderCellDef> Native Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <span class="mobile-label">Native Name:</span>
+            {{element.nativeName}}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

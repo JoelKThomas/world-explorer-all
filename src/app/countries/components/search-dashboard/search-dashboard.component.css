@@ -1,0 +1,69 @@
+img {
+    margin-top: 3%;
+}
+
+#searchbar mat-form-field {
+    width: 150%;
+}
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+    padding: 1px 1px 0.7em 1px !important;
+}
+
+::ng-deep .mat-form-field-flex {
+    margin-top: 6% !important;
+    margin-left: 22%;
+    background-color: aliceblue;
+    padding-top: 5%;
+}
+
+mat-icon {
+    color:rgb(19, 0, 71);
+}
+
+input {
+    color: black;
+}
+
+
+#searchminibar mat-form-field {
+    width: 75%;
+}
+
+#searchminibar {
+    padding-right: 5%;
+}
+
+
+
+  .example-header-image {
+    background-size: cover;
+  }
+
+.mat-card{
+    margin-bottom: 1%;
+    max-width: 400px;
+    min-width: 250px;
+}
+  /* @media (min-width: 200px) and (max-width: 599px) {
+    .example-card {
+        min-width: 400px;
+      }
+    }
+    @media (min-width: 600px) and (max-width: 1023px) {
+    .example-card {
+        min-width: 400px;
+        }
+    }
+    @media (min-width: 1024px) and (max-width: 1439px) {
+        .example-card {
+            min-width: 400px;
+            }
+        }
+    @media (min-width: 1439px) {
+        .example-card {
+            max-width: 400px !important;
+            }
+        }
+       */
+

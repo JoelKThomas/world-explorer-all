@@ -1,0 +1,12 @@
+<body background="assets/worldmap.png">
+  <div class="wrapper">
+    <a class="navbar-item" href="">
+      <img class="responsive" src="assets/logo.png" style="background-color: white">
+    </a>
+    <div id="formContent">
+      <h2 id="signin" class="underlineHover" routerLink="/auth/login" routerLinkActive="active">Sign In</h2>
+      <h2 id="signup" class="underlineHover" routerLink="/auth/signup" routerLinkActive="active">Sign Up </h2>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</body>

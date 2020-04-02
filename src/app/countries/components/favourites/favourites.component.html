@@ -1,0 +1,29 @@
+<app-nav-menu></app-nav-menu>
+<div class="mat-app-background basic-container" style="background-color: aliceblue">
+  <br>
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-evenly center" fxLayoutGap="1%">
+    <mat-card *ngFor="let member of userFavouriteCountryDetails" fxFlex="calc(25%-25px)" fxFlex.md="calc(33%-25px)"
+      fxFlex.sm="calc(50%-25px)" class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image':'url('+member.flag+')'}">
+        </div>
+        <button *ngIf="!bookmarkCountry(member.name)" mat-mini-fab color="white"
+          style="position: absolute; right: 1%; margin-top: 5%" (click)=addCountry(member.name)>
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+        <button *ngIf="bookmarkCountry(member.name)" mat-mini-fab color="white"
+          style="position: absolute; right: 1%; margin-top: 5%" (click)=removeCountry(member.name)>
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <mat-card-title (click)="countryDetail(member.name)">{{member.name}}</mat-card-title>
+        <mat-card-subtitle>{{member.capital}}</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img mat-card-image [src]="member.flag" alt="Photo of {{member.name}}"> -->
+      <mat-card-content>
+        <p>
+          {{member.subregion}}--{{member.region}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
