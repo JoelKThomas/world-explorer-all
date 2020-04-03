@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CountriesService } from '../../service/countries.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { Countries } from "../../model/countries.model"
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./country-detail.component.css']
 })
 export class CountryDetailComponent implements OnInit {
-  data: Countries[] = [];
+  data: any[] = [];
   displayedColumns = ['iso639_1', 'iso639_2', 'name', 'nativeName'];
   displayedColumnsBorder = ['flag', 'code', 'name', 'capital'];
   public dataSource: any;
