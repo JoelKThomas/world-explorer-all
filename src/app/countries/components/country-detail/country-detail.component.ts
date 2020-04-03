@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./country-detail.component.css']
 })
 export class CountryDetailComponent implements OnInit {
-  data: any[] = [];
+  data: Countries;
   displayedColumns = ['iso639_1', 'iso639_2', 'name', 'nativeName'];
   displayedColumnsBorder = ['flag', 'code', 'name', 'capital'];
   public dataSource: any;
